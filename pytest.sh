@@ -19,3 +19,6 @@ export RQ_CONNECTION_CLASS=fakeredis.FakeStrictRedis
 
 [[ $@ ==  *tests* || $@ == *test*.py* ]] || dest=tests
 pytest --ignore=venv --ignore=orcid_api -v --cov-config .coveragerc  --cov . $dest $@
+
+# once tests are done, generate the coverage report in XML format
+coverage report XML

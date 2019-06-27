@@ -36,6 +36,7 @@ script:
 after_success:
     - echo "*** Deploying from $(curl ipv4.icanhazip.com)"
     - docker-compose exec app coveralls
+    - docker-compose exec app ./deepsource_report_coverage.sh
     - docker-compose exec app python3.6 ./setup.py sdist
     - docker-compose exec app twine upload -u "$PYPI_USER" -p "$PYPI_PASSWORD" --skip-existing dist/*
     - eval "$(ssh-agent -s)"
